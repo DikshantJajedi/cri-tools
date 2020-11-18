@@ -364,8 +364,10 @@ func (r *RemoteRuntimeService) ExecSync(containerID string, cmd []string, timeou
 	if timeout != 0 {
 		// Use timeout + default timeout (2 minutes) as timeout to leave some time for
 		// the runtime to do cleanup.
+		fmt.Println("55555555555555555555555555555555555555555555555")
 		ctx, cancel = getContextWithTimeout(r.timeout + timeout)
 	} else {
+		fmt.Println("6666666666666666666666666666666666666666666666")
 		ctx, cancel = getContextWithCancel()
 	}
 	defer cancel()
