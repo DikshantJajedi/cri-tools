@@ -358,6 +358,7 @@ func (r *RemoteRuntimeService) UpdateContainerResources(containerID string, reso
 // If command exits with a non-zero exit code, an error is returned.
 func (r *RemoteRuntimeService) ExecSync(containerID string, cmd []string, timeout time.Duration) (stdout []byte, stderr []byte, err error) {
 	// Do not set timeout when timeout is 0.
+	fmt.Println("2222222222222222222222222222222222222222222222222")
 	var ctx context.Context
 	var cancel context.CancelFunc
 	if timeout != 0 {
@@ -377,12 +378,14 @@ func (r *RemoteRuntimeService) ExecSync(containerID string, cmd []string, timeou
 	}
 	resp, err := r.runtimeClient.ExecSync(ctx, req)
 	if err != nil {
+		fmt.Println("333333333333333333333333333333333333333333333333")
 		klog.Errorf("ExecSync %s '%s' from runtime service failed: %v", containerID, strings.Join(cmd, " "), err)
 		return nil, nil, err
 	}
 
 	err = nil
 	if resp.ExitCode != 0 {
+		fmt.Println("4444444444444444444444444444444444444444444444444")
 		err = utilexec.CodeExitError{
 			Err:  fmt.Errorf("command '%s' exited with %d: %s", strings.Join(cmd, " "), resp.ExitCode, resp.Stderr),
 			Code: int(resp.ExitCode),
