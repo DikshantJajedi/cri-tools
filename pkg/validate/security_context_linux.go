@@ -1052,6 +1052,7 @@ func seccompTestContainer(rc internalapi.RuntimeService, ic internalapi.ImageMan
 
 func verifySeccomp(rc internalapi.RuntimeService, containerID string, command []string, expectError bool, output string) {
 	stdout, stderr, err := rc.ExecSync(containerID, command, time.Duration(defaultExecSyncTimeout)*time.Second)
+	fmt.Println("1111111111111111111111111111111111111111111111111111111")
 	msg := fmt.Sprintf("cmd %v, stdout %q, stderr %q, with err: %v", command, stdout, stderr, err)
 
 	if expectError {
